@@ -1,0 +1,94 @@
+### AL INICAR EL PROGRMA ###
+
+Cuando se corre el programa se va a crear un usuario con usuario "Admin" y con una 
+Contraseña "123456" para el manejo de la aplicacion, este usuario tiene permiso para 
+todo.
+
+Al igual que se crea un usuario se crea una categoria para evitar problemas al eliminar
+una categoria (mas detalles en "Eliminar Categoria"). Se creara con un nombre 
+"Por defecto" y una descripcion "Categoria nula o por defecto".
+
+### USUARIOS ###
+
+Agregar usuario
+Los campos obligatorios son "nombre", "usuario" y "password". El campo rol se asigna 
+automaticamente con un rol "Cliente". Solo lo puede hacer el usuario "Admin".
+
+Modificar usuario
+Solo se podra modificar "nombre" y "usuario". El campo "rol" solo se puede modificar si 
+se cambia por "Cliente" o "Admin", otro nombre de rol no esta permitido. Contrase�a no 
+es posible de modificar. Solo los propios usuario se pueden modificar a si mismos.
+
+Eliminar usuario
+Se pueden eliminar unicamente a si mismos a excepcion del usuario "Admin" el cual puede
+borrar a todos menos a �l mismo. Cuando se elimina un usuario no se eliminan las facturadas
+relacionadas a este usuario para mantener registro de la compra del producto. Solo se 
+pueden eliminar a si mismos.
+
+Listar usuarios
+Para listar a los usuario no es necesario llenar la cabecera Authorization, es libre de uso.
+
+### CATEGORIAS ###
+
+Agregar Categoria
+Es necesario hacerse login con el usuario "Admin" antes de agregar una categoria. Son 
+obligatorios los campos "nombre" y "descripcion", cuando se envien los datos no pueden ser
+repetidos, tanto el nombre como su descripcion deben de ser unicos. Solo lo puede hacer el 
+usuario "Admin".
+
+Modificar Categoria
+Ambos campos son posibles de modificar. Se deberan de ingresar los campos como "name"(nombre)
+y "descripcion". Solo lo puede hacer el usuario "Admin".
+
+Eliminar Categoria
+Cuando se elimina una categoria debe mandarse el id de la categoria a eliminar en el params
+dentro de la ruta. Cuando se encuentran coincidencias con un producto y la categoria a 
+eliminar se le coloca el id una categoria llamada "Por defecto" la cual se crea cuando se 
+corre el programa. Solo lo puede hacer el usuario "Admin".
+
+Listar Categorias
+Es necesario hacerse login con algun usuario antes de listar las categorias. Todos los 
+usuarios pueden hacerlo.
+
+### PRODUCTOS ###
+
+Crear Producto
+Todos los campos de esta coleccion son obligatorios, para indicar a que categoria pertenece
+se manda atraves de la ruta una categoria existente. Sino, no creara al producto. El nombre
+del producto debe de ser unico. Solo lo puede hacer el usuario "Admin"
+
+Modificar Producto
+Se pueden modificar todos los campos pero unicamente el usuario "Admin" podra hacerlo.
+
+Eliminar Producto
+Para eliminar un producto se debera de enviar el id del deseado a traves de la ruta, el id
+debe de existar en la DB, de contrario no se permitira hacer el cambio. Solo lo puede hacer 
+el usuario "Admin".
+
+Obtener Productos Por Categoria
+Se mandara el id de la categoria para hacer la busqueda de los productos que coincidan con 
+el enviado. Solo lo puede hacer el usuario "Admin".
+
+Obtener Productos Por Nombre
+Es necesario llenar la cabecera Authorization y agregar un nombre dentro del parametro de la
+ruta.
+
+Listar Productos
+Se debe de hacer login antes de solicitar ya que es necesario llenar la cabecera Authorization
+
+### CARRITO ###
+
+Listar Carrito
+Es necesario hacerse login con el usuario "Admin" antes de listar todos los carritos. Todos los 
+usuarios pueden hacerlo. Solo lo puede hacer el usuario "Admin".
+
+Agregar Carrito
+Se debe de colocar el ID del producto que se quiere agregar para posteriormente hacer la compra.
+Se debera de llenar la cabecera Authorization y hay unicamente un campo obligatorio que es
+"cantidad".
+
+Listar Carrito Por Usuario
+Se llenara la cabecera Authorization para comprobar los datos del usuario. El usuario "Admin" 
+no puede realizar esta accion ya que no tiene permitido agregar compras a su nombre.
+
+Listar Carrito Por Usuario
